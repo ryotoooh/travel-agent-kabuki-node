@@ -1,0 +1,51 @@
+<!--<?php
+session_start();
+require_once('initialize.php');
+if(!isset($_SESSION['login'])) { // check if user logged in
+  header("Location:login_form.php");
+} elseif($_SESSION['login']['access_level'] == 'Guest') {
+  header("Location:index.php");
+}
+
+$connection = new dbController(HOST, USER, PASS, DB);
+$sql = "SELECT id, city, description, cite, image, caption FROM products";
+$records = $connection->getAllRecords($sql);
+?>-->
+
+<%- include('../includes/head'); %>
+<%- include('../includes/nav'); %>
+
+<main>
+  <div class="container">
+    <div class="box">
+      <h2 class="my-s txt-center">Update Destinations</h2>
+      <% if (products.length != 0) { %><table>
+          <thead>
+            <tr class="table-head">
+              <th class="id">Id</th>
+              <th>City</th>
+              <th>Description</th>
+              <th>Image</th>
+              <th class="update">Update</th>
+              <th class="delete">Delete</th>
+            </tr>
+          </thead>
+          <tbody><% products.forEach(product => { %><tr>
+            <td class="id"><!--<%= product.id %>--></td>
+            <td><%= product.city %></td>
+            <td><%- product.description.split(/\s+/).slice(0,20).join(" ").replace(/(?:\\[rn])+/g, " ") %>...</td>
+            <td class="table-img"><img src="<%= product.image %>" alt="<%= product.caption %>" class="img-s"></td>
+            <td class="update"><a href="<%= product.id %>/edit" class="detail-link">Update</a></td>
+            <td class="delete"><a href="<%= product.id %>/delete" class="detail-link">Delete</a></td>
+            </tr><% }); %>
+          </tbody>
+      </table><% } else { %>
+      <p class="txt-center mt-m">
+        No destinations found.
+      </p>
+      <% } %>
+    </div>
+  </div>
+</main>
+
+<%- include('../includes/footer'); %>

@@ -1,0 +1,64 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "region": "Kansai",
+      "city": "Osaka",
+      "description": "Ōsaka is the third largest city in Japan, with a population of over 17 million people in its greater metropolitan area. It is the central metropolis of the Kansai region and the largest of the Osaka-Kobe-Kyoto trio.\r\n\r\nIf Tokyo is Japan's capital, one might call Osaka its anti-capital. Whatever you call it, though, there are many opportunities for you to discover its true anti-character.\r\n\r\nOsaka dates back to the Asuka and Nara period. Under the name Naniwa, it was the capital of Japan from 683 to 745, long before the upstarts at Kyoto took over. Even after the capital was moved elsewhere, Osaka continued to play an important role as a hub for land, sea and river-canal transportation. During the Tokugawa era, while Edo (now Tokyo) served as the austere seat of military power and Kyoto was the home of the Imperial court and its effete courtiers, Osaka served as &#34;the Nation's Kitchen&#34; (tenka-no-daidokoro), the collection and distribution point for rice, the most important measure of wealth. Hence it was also the city where merchants made and lost fortunes and cheerfully ignored repeated warnings from the shogunate to reduce their conspicuous consumption.\r\n\r\nDuring Meiji era, Osaka's fearless entrepreneurs took the lead in industrial development, making it the equivalent of Manchester in the U.K. A thorough drubbing in World War II left little evidence of this glorious past — even the castle is a ferroconcrete reconstruction — but to this day, while unappealing and gruff on the surface, Osaka remains Japan's best place to eat, drink and party, and in legend (if not in practice) Osakans still greet each other with mōkarimakka?, &#34;are you making money?&#34;.",
+      "cite": "Osaka. (2019, September 3). Wikivoyage, The FREE worldwide travel guide that anyone can edit. Retrieved 00:20, September 10, 2019 from https://en.wikivoyage.org/w/index.php?title=Osaka&oldid=3840373.",
+      "price": "1999",
+      "image": "images/osaka.jpg",
+      "caption": "Dou-ton-bori"
+    },
+    {
+      "id": "2",
+      "region": "Kantou",
+      "city": "Tokyo",
+      "description": "Tokyo is the enormous and wealthy capital of Japan, and also its main city, overflowing with culture, commerce, and most of all, people. As the most densely populated urban area in the world, Tokyo is a fascinating and dynamic metropolis that mixes foreign influences, consumer culture and global business along with remnants of the capital of old Japan. From modern electronics and gleaming skyscrapers to cherry blossoms and the Imperial Palace, this city represents the entire sweep of Japanese history and culture. Tokyo truly has something for every traveller.\r\n\r\nOver 500 years old, the city of Tokyo was once the modest fishing village of Edo (literally Gate of the River) due to its location at the mouth of Sumida-gawa. The city only truly began to grow when it became the seat of the Tokugawa shogunate in 1603, who decided to set up a new seat of power far away from the intrigues of the imperial court in Kyoto. After the Meiji restoration in 1868, during which the Tokugawa family lost its influence, the emperor and the imperial family moved here from Kyoto, and the city was renamed to its current name, Tokyo, literally the &#34;Eastern Capital&#34; The metropolitan center of the country, Tokyo is the destination for business, education, modern culture, and government. (That's not to say that rivals such as Osaka won't dispute those claims.)",
+      "cite": "Tokyo. (2019, September 9). Wikivoyage, The FREE worldwide travel guide that anyone can edit. Retrieved 00:28, September 10, 2019 from https://en.wikivoyage.org/w/index.php?title=Tokyo&oldid=3844193.",
+      "price": "1999",
+      "image": "images/tokyo.jpg",
+      "caption": "Tokyo tower"
+    },
+    {
+      "id": "3",
+      "region": "Chubu",
+      "city": "Shizuoka",
+      "description": "Shizuoka is the capital city of Shizuoka prefecture in Japan's Chubu region. In 2005, Shizuoka absorbed the neighboring city of Shimizu.\r\n\r\nThere is a rotenburo (unisex communal bath) for those brave enough to try it in beautiful surrounds on the coast called Fujiyoshi Onsen.\r\n\r\nEach Saturday there is a flea market at the shrine in central Shizuoka. The vendors sell mainly Japanese knick knacks such as tea sets, lacquerware and the like. You can haggle about 30% off their asking prices without working too hard, or try for more if you're especially stingy.",
+      "cite": "Shizuoka. (2019, March 12). Wikivoyage, The FREE worldwide travel guide that anyone can edit. Retrieved 00:30, September 10, 2019 from https://en.wikivoyage.org/w/index.php?title=Shizuoka&oldid=3742087.",
+      "price": "2399",
+      "image": "images/shizuoka.jpg",
+      "caption": "Mt. Fuji"
+    },
+    {
+      "id": "4",
+      "region": "Okinawa",
+      "city": "Okinawa",
+      "description": "Okinawa Prefecture is one of the 47 prefectures of Japan, an island chain to the southwest of the Home Islands.\r\n\r\nThe name Okinawa means &#34;rope in the open sea&#34;, a fairly apt description of this long stretch of islands between the main islands of Japan and Taiwan. Consisting of 49 inhabited islands and 111 uninhabited islands, Okinawa has a subtropical to tropical climate, and is a popular beach holiday destination for Japanese, with frequent flights from all the major cities of Japan. While visitors from nearby countries are increasingly discovering Okinawa's charms, the number still remains low compared to the tourist destinations on mainland Japan.",
+      "cite": "Okinawa. (2019, August 30). Wikivoyage, The FREE worldwide travel guide that anyone can edit. Retrieved 00:38, September 10, 2019 from https://en.wikivoyage.org/w/index.php?title=Okinawa&oldid=3838058.",
+      "price": "2999",
+      "image": "images/okinawa.jpg",
+      "caption": "Okinawa's style house"
+    },
+    {
+      "id": "5",
+      "region": "Kansai",
+      "city": "Kyoto",
+      "description": "Kyōto was the capital of Japan for over a millennium, and carries a reputation as the nation's most beautiful city and its cultural capital. However, visitors may be surprised by how much work they will have to do to see Kyoto's beautiful side. Most first impressions of the city will be of the urban sprawl of central Kyoto, around the ultra-modern glass-and-steel train station, which is itself an example of a city steeped in tradition colliding with the modern world.\r\n\r\nNonetheless, the persistent visitor will soon discover Kyoto's hidden beauty in the temples and parks which ring the city center, and find that the city has much more to offer than immediately meets the eye.\r\n\r\nThough dwarfed in size by other major Japanese cities, Kyoto is vast in terms of its rich cultural heritage - the material endowment of over a thousand years as the country's imperial capital.",
+      "cite": "Kyoto. (2019, September 3). Wikivoyage, The FREE worldwide travel guide that anyone can edit. Retrieved 00:40, September 10, 2019 from https://en.wikivoyage.org/w/index.php?title=Kyoto&oldid=3840342.",
+      "price": "2399",
+      "image": "images/kyoto.jpg",
+      "caption": "Kiyomizu temple"
+    },
+    {
+      "id": "6",
+      "region": "Kansai",
+      "city": "Nara",
+      "description": "Nara is an ancient capital city in Nara Prefecture, Kansai region of Japan. Overshadowed by its more famous neighbor Kyoto, Nara is omitted from many a time-pressed tourist's itinerary. However, Nara is home to many important scenic and historical sites, and today preserves its main sights much more attractively than Kyoto within Nara Park and neighborhoods like Naramachi. In addition to lovely foliage and many old buildings, Nara Park is famous for deer—hundreds of them that have become very comfortable around people and can be fed and petted.\r\n\r\nAlong with the development of Heijōkyō, the capital of Japan between 710-784 AD, Nara flourished under the influence of Buddhism, leading to the creation of an enormous number of cultural assets, buildings and books, many of which are preserved today. Nara has the most buildings designated National Treasures in Japan.\r\nWhile the Heijōkyō Palace site turned into plain fields after the capital was moved to Kyoto, the shrines and temples were left on the east side of the palace (called Gekyo), and Buddhism remained influential throughout the following centuries. Another part of the area developed as a merchant town, notably in the Edo period, known as Naramachi today.\r\nEight places in the old capital Nara have been inscribed to the UNESCO World Heritage Site &#34;Historic Monuments of Ancient Nara&#34; since 1998, including five Buddhist temples, one Shinto shrine, an imperial palace and a primeval forest.",
+      "cite": "Nara. (2019, September 1). Wikivoyage, The FREE worldwide travel guide that anyone can edit. Retrieved 00:42, September 10, 2019 from https://en.wikivoyage.org/w/index.php?title=Nara&oldid=3839221.",
+      "price": "2199",
+      "image": "images/nara.jpg",
+      "caption": "A resting deer"
+    }
+  ]
+}

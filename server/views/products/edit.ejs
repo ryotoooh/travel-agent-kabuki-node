@@ -1,0 +1,88 @@
+<!--<?php
+session_start();
+require_once('initialize.php');
+if(!isset($_SESSION['login'])) { // check if user logged in
+  header("Location:login_form.php");
+} elseif($_SESSION['login']['access_level'] == 'Guest') {
+  header("Location:index.php");
+}
+$connection = new dbController(HOST, USER, PASS, DB);
+if(isset($_GET['id'])) {
+  $id = $_GET['id'];
+} else {
+  $id = '1';
+}
+$sql = "SELECT * FROM products WHERE id=".$id;
+$row = $connection->getOneRecord($sql);
+if(!empty($row)) {
+  $page_title = 'Update Destination of ' . $row['city'];
+}
+?>-->
+<%- include('../includes/head'); %>
+<%- include('../includes/nav'); %>
+
+<main>
+  <div class="container">
+    <div class="box box-detail mt-s">
+      <% if (product != undefined) { %>
+      <form action="/products/edit" method="GET" class="txt-r mt-s">
+        <div class="list-label">Choose another destination to update</div>
+        <div class="selection">
+          <select name="id" class="select-simple">
+            <% if (products != undefined) { %>
+              <% products.forEach(record => { %>
+                <option value="<%= record.id %>" <% if (product.id == record.id) { %>selected<% } %>><%= record.city %></option>
+              <% }); %>
+            <% } %>
+          </select>
+          <button type="submit" class="btn btn-simple">Go</button>
+        </div>
+      </form>
+
+			<h2 class="mt-s txt-center">Update Destination of <%= product.city %></h2>
+      <form method="POST" action="/products/<%= product.id %>?_method=PUT" enctype="multipart/form-data">
+        <input type="hidden" name="id" value="<%= product.id %>">
+				<div class="mt-s form-flex">
+					<label>Region</label>
+					<input type="text" name="region" value="<%= product.region %>" class="input-txt mt-xs" />
+				</div>
+				<div class="mt-s">
+					<label>City (This input cannot be modified)</label>
+					<input type="text" name="city" value="<%= product.city %>" class="input-txt mt-xs txt-gray" readonly />
+				</div>
+				<div class="mt-s">
+					<label>Description</label>
+					<textarea name="description" class="input-txtarea mt-xs"><%= product.description %></textarea>
+				</div>
+        <div class="mt-s">
+					<label>Cite</label>
+					<input type="text" name="cite" value="<%= product.cite %>" class="input-txt mt-xs" />
+				</div>
+				<div class="mt-s">
+					<label>Price $ (Number Format Only)</label>
+					<input type="text" name="price" value="<%= product.price %>" class="input-txt mt-xs" />
+				</div>
+				<div class="mt-s">
+          <label>Image File (200KB Maximum)</label>
+					<!-- <input type="hidden" name="MAX_FILE_SIZE" value="200000" /> -->
+          <p class="my-xs txt-gray">Current File <%= product.image %></p>
+					<input type="file" name="image" class="btn input-file mt-xs" />
+				</div>
+				<div class="mt-s">
+					<label>Image Caption</label>
+					<input type="text" name="caption" value="<%= product.caption %>" class="input-txt mt-xs" />
+				</div>
+				<div class="mt-s txt-center">
+            <button type="submit" class="btn btn-simple">Update Destination</button>
+				</div>
+  		</form>
+      <% } else { %>
+        <div class="mt-s txt-center">
+          There was a problem retrieving the destination data.
+        </div>
+      <% } %>
+    </div>
+	</div>
+</main>
+
+<%- include('../includes/footer'); %>

@@ -1,0 +1,44 @@
+<!--<?php
+session_start();
+require_once('initialize.php');
+?>-->
+
+<%- include('../includes/head'); %>
+<%- include('../includes/nav'); %>
+
+<main>
+  <div class="txt-center container splash"  style="background-image: url('/images/bg_img_4.jpg')">
+    <div class="box">
+      <h2>Our freshly picked destinations</h2>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="box">
+      <% if (products.length != 0) { %>
+
+      <% products.forEach(product => { %><div class="col-3 mt-m">
+        <div class="product-box">
+          <h2 class="pop-txt">
+            <a href="products/<%= product.id %>"><%= product.city %></a>
+          </h2>
+          <div class="bg-black">
+            <a href="products/<%= product.id %>">
+              <img class="product-img" src="<%= product.image %>" alt="<%= product.caption %>" >
+            </a>
+          </div>
+        </div>
+        <p class="desc mt-xs"><%- product.description.split(/\s+/).slice(0,30).join(" ").replace(/(?:\\[rn])+/g, " ") %>...
+          <a href="products/<%= product.id %>" class="detail-link">Go to detail page</a>
+        </p>
+      </div><% }); %>
+      <% } else { %>
+      <div class="result-msg mt-m result-red">
+        <p class="my-s txt-red">No destinations found.</p>
+      </div>
+      <% } %>
+    </div>
+  </div>
+</main>
+
+<%- include('../includes/footer'); %>
