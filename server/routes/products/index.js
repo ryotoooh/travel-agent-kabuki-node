@@ -128,6 +128,17 @@ const routes = (param) => {
     }
   })
 
+  // Redirect dropdown form list
+  router.get('/delete', async (req, res, next) => {
+    try {
+      // console.log(req.query);
+      res.redirect(`/products/${req.query.id}/delete`);
+    } catch(err) {
+      console.log(err);
+      return err;
+    }
+  })
+
   router.get('/:id', async (req, res, next) => {
     try {
       const product = await productService.getProduct(req.params.id);
@@ -149,6 +160,23 @@ const routes = (param) => {
       const products = await productService.getProducts();
       return res.render('products/edit', {
         title: 'Update Destination of ' + product.city,
+        product,
+        products,
+      });
+    } catch(err) {
+      res.status(404);
+      res.end()
+      console.log(err);
+      return;
+    }
+  });
+
+  router.get('/:id/delete', async (req, res, next) => {
+    try {
+      const product = await productService.getProduct(req.params.id);
+      const products = await productService.getProducts();
+      return res.render('products/delete', {
+        title: 'Delete Destination of ' + product.city,
         product,
         products,
       });
@@ -238,18 +266,36 @@ const routes = (param) => {
     }
   });
 
-  router.get('/:id/delete', async (req, res, next) => {
+  router.delete('/:id', multipartyMiddleware, async (req, res, next) => {
     try {
-      const product = await productService.getProduct(req.params.id);
-      return res.render('products/delete', {
-        title: product.city,
-        product,
+      let result = true;
+      let result_msg = '';
+
+      // remove file to public/images
+      fs.unlink('./public' + req.body.image, (err) => {
+        if (err) 
+          console.log(err);
       });
+      result_msg = 'Image successfully deleted.\r\n';
+          
+      await productService.deleteProduct(req);
+      
+      result_msg += 'Destination successfully deleted.';
+      res.render('products/result', {
+        title : 'Delete Result of ' + req.body.city,
+        result,
+        result_msg,
+      });
+      
     } catch(err) {
-      res.status(404);
-      res.end()
-      console.log(err);
-      return;
+      let result = false;
+      let result_msg = 'Destination not deleted.';
+      res.render('products/result', {
+        title : 'Delete Result of ' + req.body.city,
+        result,
+        result_msg,
+      });
+      return err;
     }
   });
 

@@ -14,9 +14,6 @@ if(isset($_GET['id'])) {
 }
 $sql = "SELECT * FROM products WHERE id=".$id;
 $row = $connection->getOneRecord($sql);
-if(!empty($row)) {
-  $page_title = 'Update Destination of ' . $row['city'];
-}
 ?>-->
 <%- include('../includes/head'); %>
 <%- include('../includes/nav'); %>
@@ -25,8 +22,8 @@ if(!empty($row)) {
   <div class="container">
     <div class="box box-detail mt-s">
       <% if (product != undefined) { %>
-      <form action="/products/edit" method="GET" class="txt-r mt-s">
-        <div class="list-label">Choose another destination to update</div>
+      <form action="/products/delete" method="GET" class="txt-r mt-s">
+        <div class="list-label">Choose another destination to delete</div>
         <div class="selection">
           <select name="id" class="select-simple">
             <% if (products != undefined) { %>
@@ -39,41 +36,44 @@ if(!empty($row)) {
         </div>
       </form>
 
-			<h2 class="mt-s txt-center">Update Destination of <%= product.city %></h2>
-      <form method="POST" action="/products/<%= product.id %>?_method=PUT" enctype="multipart/form-data">
+			<h2 class="mt-s txt-center">Delete Destination of <%= product.city %></h2>
+      <div class="result-msg mt-s result-red">
+        <p class="my-s txt-red">Please carefully choose destination to delete. This operation cannot be reverted.</p>
+      </div>
+      <form method="POST" action="/products/<%= product.id %>?_method=DELETE" enctype="multipart/form-data">
         <!-- <input type="hidden" name="id" value="<%= product.id %>"> -->
 				<div class="mt-s form-flex">
 					<label>Region</label>
-					<input type="text" name="region" value="<%= product.region %>" class="input-txt mt-xs" />
+					<input type="text" name="region" value="<%= product.region %>" class="input-txt mt-xs txt-gray" readonly />
 				</div>
 				<div class="mt-s">
-					<label>City (This input cannot be modified)</label>
+					<label>City</label>
 					<input type="text" name="city" value="<%= product.city %>" class="input-txt mt-xs txt-gray" readonly />
 				</div>
 				<div class="mt-s">
 					<label>Description</label>
-					<textarea name="description" class="input-txtarea mt-xs"><%= product.description %></textarea>
+					<textarea name="description" class="input-txtarea mt-xs txt-gray" readonly><%= product.description %></textarea>
 				</div>
         <div class="mt-s">
 					<label>Cite</label>
-					<input type="text" name="cite" value="<%= product.cite %>" class="input-txt mt-xs" />
+					<input type="text" name="cite" value="<%= product.cite %>" class="input-txt mt-xs txt-gray" readonly />
 				</div>
 				<div class="mt-s">
-					<label>Price $ (Number Format Only)</label>
-					<input type="text" name="price" value="<%= product.price %>" class="input-txt mt-xs" />
+					<label>Price $</label>
+					<input type="text" name="price" value="<%= product.price %>" class="input-txt mt-xs txt-gray" readonly />
 				</div>
 				<div class="mt-s">
-          <label>Image File (200KB Maximum)</label>
-					<!-- <input type="hidden" name="MAX_FILE_SIZE" value="200000" /> -->
-          <p class="my-xs txt-gray">Current File <%= product.image %></p>
-					<input type="file" name="image" class="btn input-file mt-xs" />
+          <label>Image File</label>
+          <input type="hidden" name="image" value="<%= product.image %>" />
+          <p class="my-xs txt-gray"><%= product.image %></p>
 				</div>
 				<div class="mt-s">
 					<label>Image Caption</label>
-					<input type="text" name="caption" value="<%= product.caption %>" class="input-txt mt-xs" />
+					<input type="text" name="caption" value="<%= product.caption %>" class="input-txt mt-xs txt-gray" readonly />
 				</div>
 				<div class="mt-s txt-center">
-            <button type="submit" class="btn btn-simple">Update Destination</button>
+            <a href="products/all"><input type="button" class="btn btn-simple" value="Cancel" /></a>
+            <button type="submit" class="btn btn-simple btn-danger">Delete Destination</button>
 				</div>
   		</form>
       <% } else { %>

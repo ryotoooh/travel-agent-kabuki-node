@@ -33,7 +33,7 @@ class ProductService {
   }
 
   async updateProduct(req) {
-    Product.findById({ _id: req.body.id}, async (err, updatedProduct) => {
+    Product.findById({ _id: req.params.id}, async (err, updatedProduct) => {
       if (err) {
         return err;
       } else {
@@ -49,6 +49,17 @@ class ProductService {
         updatedProduct.caption = req.body.caption;
 
         updatedProduct.save();
+        return true;
+      }
+    });
+  }
+
+  async deleteProduct(req) {
+    Product.findById({ _id: req.params.id}, async (err, deletedProduct) => {
+      if (err) {
+        return err;
+      } else {
+        deletedProduct.remove();
         return true;
       }
     });
