@@ -9,7 +9,7 @@ import methodOverride from 'method-override';
 import ProductService from './server/services/ProductService';
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 const DATABASEURL = process.env.DATABASEURL;
 
 const productService = new ProductService();
@@ -36,6 +36,6 @@ app.use('/', routes({
 }));
 app.use(express.static('public'));
 
-app.listen(PORT, () =>
+app.listen(PORT, process.env.IP, () =>
   console.log(`travel-agent-kabuki is running on port ${PORT}`)
 );
