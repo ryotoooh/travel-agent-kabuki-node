@@ -5,15 +5,15 @@
       <a href="/">Top</a><a href="javascript:void(0);" class="icon" onclick="myFunction()"><i class="fa fa-bars"></i></a>
     </div>
     <a href="/products">Destinations</a>
-    <!--<?php if(isset($_SESSION['login'])) { ?>
-      <?php if($_SESSION['login']['access_level'] == 'Administrator') { ?>
-      --><a href="/products/all">Update Destinations</a><!--
-      <?php } ?>
-      --><a href="/products/new">Add Destination</a><!--
-      <a href="./logout.php">Logout</a>
-    <?php } else { ?>
-      <a href="./login.php">Login</a>
-    <?php } ?>-->
+    <% if (typeof user !== 'undefined') { %>
+      <% if(user.access_level == 'Administrator') { %>
+      <a href="/products/all">Update Destinations</a>
+      <% } %>
+      <a href="/products/new">Add Destination</a>
+      <a href="/logout">Logout</a>
+    <% } else { %>
+      <a href="/login">Login</a>
+    <% } %>
   </div>
 </nav>
 

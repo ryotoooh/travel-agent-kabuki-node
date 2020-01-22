@@ -14,6 +14,7 @@ const routes = (param) => {
         title: `Search Result of ${searchValue}`,
         searchValue,
         products,
+        user: req.user,
       });
     } catch(err) {
       return err;

@@ -7,7 +7,7 @@ const router = express.Router();
 
 const routes = (param) => {
 
-  const { productService } = param;
+  const { productService, middleware } = param;
 
   router.get('/', async (req, res, next) => {
     try {
@@ -15,13 +15,14 @@ const routes = (param) => {
       return res.render('products/display', {
         title: 'Destinations',
         products,
+        user: req.user,
       });
     } catch(err) {
       return err;
     }
   });
 
-  router.post('/', multipartyMiddleware, async (req, res, next) => {
+  router.post('/', middleware.isLoggedIn, multipartyMiddleware, async (req, res, next) => {
     try {
       // console.log(req.body);
       // console.log(req.files);
@@ -55,6 +56,7 @@ const routes = (param) => {
         res.render('products/result', {
           result,
           result_msg,
+          user: req.user,
         });
       } else if (req.files.image.size > 200000) {
         result = false;
@@ -62,6 +64,7 @@ const routes = (param) => {
         res.render('products/result', {
           result,
           result_msg,
+          user: req.user,
         });
       } else {
         // console.log(req.body);
@@ -86,6 +89,7 @@ const routes = (param) => {
           title : 'Add Result of ' + req.body.city,
           result,
           result_msg,
+          user: req.user,
         });
       }
 
@@ -95,22 +99,24 @@ const routes = (param) => {
     }
   });
 
-  router.get('/new', async (req, res, next) => {
+  router.get('/new', middleware.isLoggedIn, async (req, res, next) => {
     try {
       return res.render('products/new', {
         title: 'Add Destination',
+        user: req.user,
       });
     } catch(err) {
       return err;
     }
   });
 
-  router.get('/all', async (req, res, next) => {
+  router.get('/all', middleware.isLoggedIn, async (req, res, next) => {
     try {
       const products = await productService.getProducts();
       return res.render('products', {
         title: 'Update Destinations',
         products,
+        user: req.user,
       });
     } catch(err) {
       return err;
@@ -118,7 +124,7 @@ const routes = (param) => {
   })
 
   // Redirect dropdown form list
-  router.get('/edit', async (req, res, next) => {
+  router.get('/edit', middleware.isLoggedIn, async (req, res, next) => {
     try {
       // console.log(req.query);
       res.redirect(`/products/${req.query.id}/edit`);
@@ -129,7 +135,7 @@ const routes = (param) => {
   })
 
   // Redirect dropdown form list
-  router.get('/delete', async (req, res, next) => {
+  router.get('/delete', middleware.isLoggedIn,async (req, res, next) => {
     try {
       // console.log(req.query);
       res.redirect(`/products/${req.query.id}/delete`);
@@ -145,6 +151,7 @@ const routes = (param) => {
       return res.render('products/show', {
         title: product.city,
         product,
+        user: req.user,
       });
     } catch(err) {
       res.status(404);
@@ -154,7 +161,7 @@ const routes = (param) => {
     }   
   });
 
-  router.get('/:id/edit', async (req, res, next) => {
+  router.get('/:id/edit', middleware.isLoggedIn, async (req, res, next) => {
     try {
       const product = await productService.getProduct(req.params.id);
       const products = await productService.getProducts();
@@ -162,6 +169,7 @@ const routes = (param) => {
         title: 'Update Destination of ' + product.city,
         product,
         products,
+        user: req.user,
       });
     } catch(err) {
       res.status(404);
@@ -171,7 +179,7 @@ const routes = (param) => {
     }
   });
 
-  router.get('/:id/delete', async (req, res, next) => {
+  router.get('/:id/delete', middleware.isLoggedIn, async (req, res, next) => {
     try {
       const product = await productService.getProduct(req.params.id);
       const products = await productService.getProducts();
@@ -179,6 +187,7 @@ const routes = (param) => {
         title: 'Delete Destination of ' + product.city,
         product,
         products,
+        user: req.user,
       });
     } catch(err) {
       res.status(404);
@@ -188,7 +197,7 @@ const routes = (param) => {
     }
   });
 
-  router.put('/:id', multipartyMiddleware, async (req, res, next) => {
+  router.put('/:id', middleware.isLoggedIn, multipartyMiddleware, async (req, res, next) => {
     try {
       // console.log(req.body);
       // console.log(req.files);
@@ -217,6 +226,7 @@ const routes = (param) => {
         res.render('products/result', {
           result,
           result_msg,
+          user: req.user,
         });
       } else if (req.files.image.size > 200000) {
         result = false;
@@ -224,6 +234,7 @@ const routes = (param) => {
         res.render('products/result', {
           result,
           result_msg,
+          user: req.user,
         });
       } else {
         // console.log(req.body);
@@ -251,6 +262,7 @@ const routes = (param) => {
           title : 'Update Result of ' + req.body.city,
           result,
           result_msg,
+          user: req.user,
         });
       }
   
@@ -261,12 +273,13 @@ const routes = (param) => {
         title : 'Update Result of ' + req.body.city,
         result,
         result_msg,
+        user: req.user,
       });
       return err;
     }
   });
 
-  router.delete('/:id', multipartyMiddleware, async (req, res, next) => {
+  router.delete('/:id', middleware.isLoggedIn, multipartyMiddleware, async (req, res, next) => {
     try {
       let result = true;
       let result_msg = '';
@@ -285,6 +298,7 @@ const routes = (param) => {
         title : 'Delete Result of ' + req.body.city,
         result,
         result_msg,
+        user: req.user,
       });
       
     } catch(err) {
@@ -294,6 +308,7 @@ const routes = (param) => {
         title : 'Delete Result of ' + req.body.city,
         result,
         result_msg,
+        user: req.user,
       });
       return err;
     }

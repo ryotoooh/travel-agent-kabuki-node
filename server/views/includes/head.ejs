@@ -27,7 +27,14 @@
            }
         }
       ?>-->
-        <p class="txt-center my-xs" style="color: white; font-size: 1.25rem;">
+      <% function welcome() { let h = new Date().getHours(); if (h < 12) { return 'Ohayou' } else if (h > 11 && h < 18) { return 'Konnichiwa' } else { return 'Kombanwa' } } %>
+        
+      <% if (typeof user !== 'undefined') { %>
+      <p class="txt-center my-xs" style="color: white; font-size: 1.25rem;">
+        <%= welcome(); %>, <%= user.firstname %> san.
+      </p>
+      <% } %>
+        
           <!--<?php echo welcome() . ', '; ?>
           <?php echo $_SESSION['login']['firstname'] . ' san.'; ?>
         </p>
