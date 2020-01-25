@@ -2,18 +2,18 @@ require('dotenv').config();
 
 import express from 'express';
 import path from 'path';
-import routes from './server/routes';
+import routes from './routes';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import methodOverride from 'method-override';
 import passport from 'passport';
 import LocalStrategy from 'passport-local';
 import passportLocalMongoose from 'passport-local-mongoose';
-import { UserSchema } from './server/models/user';
+import { UserSchema } from './models/user';
 const User = mongoose.model('User', UserSchema);
 
-import ProductService from './server/services/ProductService';
-import Middleware from './server/middleware';
+import ProductService from './services/ProductService';
+import Middleware from './middleware';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -36,7 +36,7 @@ mongoose.connect(DATABASEURL, {
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, './server/views'));
+app.set('views', path.join(__dirname, './views'));
 app.use(methodOverride('_method'));
 
 // session configuration
