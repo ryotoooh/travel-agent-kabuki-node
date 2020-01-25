@@ -1,4 +1,5 @@
 require('dotenv').config();
+import 'babel-polyfill';
 
 import express from 'express';
 import path from 'path';
@@ -36,7 +37,7 @@ mongoose.connect(DATABASEURL, {
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, './views'));
+app.set('views', path.join(__dirname, '../server/views'));
 app.use(methodOverride('_method'));
 
 // session configuration
