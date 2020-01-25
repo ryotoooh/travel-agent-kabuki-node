@@ -5,11 +5,17 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon ./app.js --exec babel-node -e js"
+    "clean": "rm -rf build && mkdir build",
+    "build-babel": "babel -d ./build ./src -s",
+    "build": "npm run clean && npm run build-babel",
+    "start": "npm run build && node ./build/index.js",
+    "dev": "nodemon ./app.js --exec babel-node -e js"
   },
   "author": "Ryota Hisanabe",
   "license": "MIT",
   "dependencies": {
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-0": "^6.24.1",
     "body-parser": "^1.19.0",
     "braces": "^3.0.2",
     "connect-multiparty": "^2.2.0",
@@ -28,8 +34,6 @@
     "passport-local-mongoose": "^6.0.1"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-stage-0": "^6.24.1"
+    "babel-cli": "^6.26.0"
   }
 }
