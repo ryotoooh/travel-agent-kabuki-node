@@ -13,20 +13,6 @@
   <div class="page-wrap">
     <header>
       <h1><a href="/">Kabuki Travel</a></h1>
-      <!--<?php if(isset($_SESSION['login'])) {
-        date_default_timezone_set('Australia/Melbourne');
-        function welcome(){
-          $time = date('H');
-          $timezone = date('e');
-           if($time < '12') {
-             return "Ohayou";
-           } elseif($time > '11' && $time < '18') {
-             return "Konnichiwa";
-           } elseif($time > '17') {
-             return "Kombanwa";
-           }
-        }
-      ?>-->
       <% function welcome() { let h = new Date().getHours(); if (h < 12) { return 'Ohayou' } else if (h > 11 && h < 18) { return 'Konnichiwa' } else { return 'Kombanwa' } } %>
         
       <% if (typeof user !== 'undefined') { %>
@@ -35,9 +21,4 @@
       </p>
       <% } %>
         
-          <!--<?php echo welcome() . ', '; ?>
-          <?php echo $_SESSION['login']['firstname'] . ' san.'; ?>
-        </p>
-      <?php } ?>-->
     </header>
-

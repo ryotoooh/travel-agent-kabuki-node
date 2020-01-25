@@ -1,0 +1,20 @@
+<%- include('./includes/head'); %>
+<%- include('./includes/nav'); %>
+
+<main class="content-center">
+  <div class="container">
+    <div class="box">
+      <div class="result-msg mt-m <%= result ? 'result-green' : 'result-red' %>">
+        <p class="my-s <%= result ? 'txt-green' : 'txt-red' %>" style="white-space: pre-line;"><%= result_msg.replace(/(?:\\[rn])+/g, "<br />"); %></p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+  setTimeout(function () {
+     window.location = '<%= url %>';
+  }, 5000)
+</script>
+
+<%- include('./includes/footer'); %>

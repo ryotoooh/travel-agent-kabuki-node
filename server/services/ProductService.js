@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import fs from 'fs';
+import sanitize from 'mongo-sanitize';
 
 import { ProductSchema } from '../models/product';
 
@@ -22,7 +23,12 @@ class ProductService {
     return product;
   }
 
+  async cleanQuery(query) {
+    return query = sanitize(query);
+  }
+
   async searchProducts(keyword) {
+    this.cleanQuery(keyword);
     const products = await Product.find({ $text: { $search: keyword } });
     return products;
   }

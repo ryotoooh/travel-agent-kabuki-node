@@ -5,6 +5,15 @@ class Middleware {
     }
     res.redirect('/login');
   }
+
+  async isAdmin(req, res, next) {
+    if (req.user.access_level === 'Administrator') {
+      return next();
+    } else {
+      res.redirect('/');
+    }
+  }
+  
 }
 
 export default Middleware;

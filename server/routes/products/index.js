@@ -110,7 +110,7 @@ const routes = (param) => {
     }
   });
 
-  router.get('/all', middleware.isLoggedIn, async (req, res, next) => {
+  router.get('/all', middleware.isLoggedIn, middleware.isAdmin, async (req, res, next) => {
     try {
       const products = await productService.getProducts();
       return res.render('products', {
@@ -124,7 +124,7 @@ const routes = (param) => {
   })
 
   // Redirect dropdown form list
-  router.get('/edit', middleware.isLoggedIn, async (req, res, next) => {
+  router.get('/edit', middleware.isLoggedIn, middleware.isAdmin, async (req, res, next) => {
     try {
       // console.log(req.query);
       res.redirect(`/products/${req.query.id}/edit`);
@@ -135,7 +135,7 @@ const routes = (param) => {
   })
 
   // Redirect dropdown form list
-  router.get('/delete', middleware.isLoggedIn,async (req, res, next) => {
+  router.get('/delete', middleware.isLoggedIn, middleware.isAdmin, async (req, res, next) => {
     try {
       // console.log(req.query);
       res.redirect(`/products/${req.query.id}/delete`);
@@ -161,7 +161,7 @@ const routes = (param) => {
     }   
   });
 
-  router.get('/:id/edit', middleware.isLoggedIn, async (req, res, next) => {
+  router.get('/:id/edit', middleware.isLoggedIn, middleware.isAdmin, async (req, res, next) => {
     try {
       const product = await productService.getProduct(req.params.id);
       const products = await productService.getProducts();
@@ -179,7 +179,7 @@ const routes = (param) => {
     }
   });
 
-  router.get('/:id/delete', middleware.isLoggedIn, async (req, res, next) => {
+  router.get('/:id/delete', middleware.isLoggedIn, middleware.isAdmin, async (req, res, next) => {
     try {
       const product = await productService.getProduct(req.params.id);
       const products = await productService.getProducts();
@@ -197,7 +197,7 @@ const routes = (param) => {
     }
   });
 
-  router.put('/:id', middleware.isLoggedIn, multipartyMiddleware, async (req, res, next) => {
+  router.put('/:id', middleware.isLoggedIn, middleware.isAdmin, multipartyMiddleware, async (req, res, next) => {
     try {
       // console.log(req.body);
       // console.log(req.files);
@@ -279,7 +279,7 @@ const routes = (param) => {
     }
   });
 
-  router.delete('/:id', middleware.isLoggedIn, multipartyMiddleware, async (req, res, next) => {
+  router.delete('/:id', middleware.isLoggedIn, middleware.isAdmin, multipartyMiddleware, async (req, res, next) => {
     try {
       let result = true;
       let result_msg = '';

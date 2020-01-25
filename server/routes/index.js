@@ -48,11 +48,33 @@ const routes = (param) => {
           console.log(err)
           return res.render('register');
         }
-        passport.authenticate('local')(req, res, () => {
-          return res.redirect('products/all');
-        });
+        // passport.authenticate('local')(req, res, () => {
+        //   return res.redirect('products/all');
+        // });
+        passport.authenticate('local', (err, user, info) => {
+          if (err) { return next(err); }
+          if (!user) { return res.redirect('/register'); }
+          if (user.access_level === 'Administrator') {
+            req.logIn(user, function(err) {
+              if (err) { return next(err); }
+              return res.render('result', {
+                result: true,
+                result_msg: `Glad to meet you, ${user.firstname}\r\nYou will be redirected to Update Destinations page in 5 seconds.`,
+                url: '/products/all',
+              }); 
+            });
+          } else {
+            req.logIn(user, function(err) {
+              if (err) { return next(err); }
+              return res.render('result', {
+                result: true,
+                result_msg: `Glad to meet you, ${user.firstname}\r\nYou will be redirected to Add Destinations page in 5 seconds.`,
+                url: '/products/new',
+              });
+            });
+          };
+        })(req, res, next);
       });
-
     } catch(err) {
       return err;
     }
@@ -69,10 +91,37 @@ const routes = (param) => {
   });
 
   // passport middleware
-  router.post('/login', passport.authenticate('local', {
-    successRedirect: '/products/all',
-    failureRedirect: '/login'
-  }), async (req, res, next) => {
+  router.post('/login', async (req, res, next) => {
+    passport.authenticate('local', (err, user, info) => {
+      if (err) { return next(err); }
+      if (!user) { 
+        return res.render('login', {
+          result: false,
+          result_msg: 'Username and Password are not valid.',
+        }); 
+      }
+      if (user.access_level === 'Administrator') {
+        req.logIn(user, function(err) {
+          if (err) { return next(err); }
+          // return res.redirect('/products/all');
+          return res.render('result', {
+            result: true,
+            result_msg: `Welcome back, ${user.firstname}\r\nYou will be redirected to Update Destinations page in 5 seconds.`,
+            url: '/products/all',
+          }); 
+        });
+      } else {
+        req.logIn(user, function(err) {
+          if (err) { return next(err); }
+          // return res.redirect('/products/new');
+          return res.render('result', {
+            result: true,
+            result_msg: `Welcome back, ${user.firstname}\r\nYou will be redirected to Add Destinations page in 5 seconds.`,
+            url: '/products/new',
+          });
+        });
+      };
+    })(req, res, next);
   });
 
   router.get('/logout', async (req, res, next) => {
